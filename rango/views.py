@@ -6,14 +6,15 @@ from django.utils.html import format_html
 
 
 def index(request):
-    about_url = reverse('about')
-    about_link = format_html('<a href="{}">about</a>', about_url)
-    response = f'Rango says hey there partner! {about_link}'
-    return HttpResponse(response)
+    # Construct a dictionary to pass to the template engine as its context.
+    context_dict = {'boldmessage': 'Crunchy, creamy, cookie, candy, cupcake!'}
 
+    return render(request, 'rango/index.html', context=context_dict)
 def about(request):
-    index_url = reverse('index')
-    index_link = format_html('<a href="{}">index</a>', index_url)
-    response = f'Rango says here is the about page. {index_link}'
-    return HttpResponse(response)
+    #index_url = reverse('index')
+    #index_link = format_html('<a href="{}">index</a>', index_url)
+    #response = f'Rango says here is the about page. {index_link}'
+    #return HttpResponse(response)
+    context_dict = {'boldmessage': 'about page context dictionary'}
+    return render(request, 'rango/about.html', context=context_dict)
     

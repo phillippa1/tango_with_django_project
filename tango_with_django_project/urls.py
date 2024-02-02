@@ -22,17 +22,12 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
-    #path('', views.index, name='index'),
-    #path('admin/index', admin.site.urls),
-    #path('', views.about, name='about'),
-    #path('admin/about', admin.site.urls),
-    #path('', views.index, name='index'),
-    #path('rango/', include([
-    #    path('about/', views.about, name='about'),
-    #])),
+    path('rango/', include('rango.urls', namespace='rango')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('rango/about/', views.about, name='about'),
+    #path('about/', views.about, name='about'),
+    #path('', include('rango.urls')),
     
    
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -42,4 +37,11 @@ urlpatterns = [
     
     #path('admin/about', admin.site.urls),
     # The above maps any URLs starting with rango/ to be handled by rango.
+    #path('', views.index, name='index'),
+    #path('admin/index', admin.site.urls),
+    #path('', views.about, name='about'),
+    #path('', views.index, name='index'),
+    #path('rango/', include([
+    #    path('about/', views.about, name='about'),
+    #])),
 

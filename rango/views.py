@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.utils.html import format_html
+from rango.models import Category
 
 
 
@@ -16,5 +17,7 @@ def about(request):
     #response = f'Rango says here is the about page. {index_link}'
     #return HttpResponse(response)
     context_dict = {'boldmessage': 'about page context dictionary'}
+    context_dict['categories'] = Category.objects.all()
+    context_dict['index_url'] = reverse('rango:index')
     return render(request, 'rango/about.html', context=context_dict)
     

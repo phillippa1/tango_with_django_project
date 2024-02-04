@@ -1,15 +1,21 @@
 import os
 import random
-from rango.models import Category, Page
+import django
+import django.apps
+#from django.core.management import call_command
 from django.urls import reverse, reverse_lazy
 
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                      'tango_with_django_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
 
-import django
+#call_command('populate_rango')
+
 django.setup()
 from rango.models import Category, Page
+
+
+
+
 
 
 

@@ -56,11 +56,15 @@ def populate():
         }
     }
 
+    
+
     for name, cat in cats.items():
-        c = add_cat(name, views=cat['views'], likes=cat['likes'])
+        c = Category.objects.filter(name=name).first()
+        if not c:  # Only add the category if it doesn't already exist
+            c = add_cat(name, views=cat['views'], likes=cat['likes'])
         for p in cat['pages']:
             add_page(c, p['title'], p['url'])
-        c.save() 
+        c.save()
 
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
@@ -110,4 +114,16 @@ if __name__ == '__main__':
     # for c in Category.objects.all():
     #     for p in c.pages.all():
     #         add_page(c, p['title'], p['url'], c.views, c.likes)
+
+     # for name, cat in cats.items():
+    #     c = add_cat(name, views=cat['views'], likes=cat['likes'])
+    #     if not c:  # Only add the category if it doesn't already exist
+    #         c = add_cat(name, views=cat['views'], likes=cat['likes'])
+    #     for p in cat['pages']:
+    #         add_page(c, p['title'], p['url'])
+    #     c.save()
+        # for p in cat['pages']:
+        #     add_page(c, p['title'], p['url'])
+        # c.save() 
+
 

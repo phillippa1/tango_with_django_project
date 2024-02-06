@@ -11,13 +11,15 @@
         <div>
             This tutorial has been put together by Pippa
             Rango says here is the about page. <br />
-            <strong>{{ boldmessage }}</strong><br />
-            <p><a href="{{ index_url }}">Index</a></p>
+            <strong>{{ boldmessage }}</strong>
+            <br />
+            <p><a href="{% url 'rango:index' %}">Index</a></p>
         </div>
 
 
         <div>
-            <a href="/">Home</a><br />
+            <a href="{% url 'rango:index' %}">Home</a>
+            <br />
             <img src="/static/images/rango.jpg" alt="Picture of Rango" />
             <img src="/media/cat.jpg" alt="Picture of a Cat." />
         </div>

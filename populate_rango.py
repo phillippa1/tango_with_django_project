@@ -2,21 +2,13 @@ import os
 import random
 import django
 import django.apps
-#from django.core.management import call_command
 from django.urls import reverse, reverse_lazy
 
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tango_with_django_project.settings')
 
-#call_command('populate_rango')
-
 django.setup()
 from rango.models import Category, Page
-
-
-
-
-
 
 
 def populate():
@@ -61,15 +53,13 @@ def populate():
             'likes': 16
         }
     }
-
-    
-
     for name, cat in cats.items():
         c = Category.objects.filter(name=name).first()
         if not c:  # Only add the category if it doesn't already exist
             c = add_cat(name, views=cat['views'], likes=cat['likes'])
         for p in cat['pages']:
-            add_page(c, p['title'], p['url'])
+            views = random.randint(1, 100) 
+            add_page(c, p['title'], p['url'], views=views)
         c.save()
 
     for c in Category.objects.all():
@@ -94,42 +84,3 @@ def add_cat(name, views=0, likes=0):
 if __name__ == '__main__':
     print('Starting Rango population script...')
     populate()
-
-
-# Python = add_cat('Python', cats['Python']['views'],cats['Python']['likes'])
-    # add_page(Python, 'Official Python Tutorial', reverse('rango:tutorial'))
-    # add_page(Python, 'Django Rocks', 'http://docs.python.org/3/tutorial/')
-    # add_page(Python, 'How to Tango with Django', 'http://docs.python.org/3/tutorial/')
-
-    # Django = add_cat('Django', cats['Django']['views'],cats['Django']['likes'])
-    # add_page(Django, 'Official Django Tutorial', reverse('rango:tutorial'))
-    # add_page(Django, 'Django Rocks', 'https://docs.djangoproject.com/en/2.1/intro/tutorial01/')
-    # add_page(Django, 'How to Tango with Djang', 'https://docs.djangoproject.com/en/2.1/intro/tutorial01/')
-
-    # Other = add_cat('Other Frameworks', cats['Other Frameworks']['views'],cats['Other Frameworks']['likes'])
-    # add_page(Other, 'Official Django Tutorial', reverse('rango:tutorial'))
-    # add_page(Other, 'Django Rocks', 'http://bottlepy.org/docs/dev/')
-    # add_page(Other, 'How to Tango with Django', 'http://bottlepy.org/docs/dev/')
-
-    #for cat, cat_data in cats.items():
-    #     c = add_cat(cat, cat_data['views'], cat_data['likes'])
-    #     for p in cat_data['pages']:
-    #         add_page(c, p['title'], p['url'], cat_data['views'])
-    #     c.save() 
-
-    # for c in Category.objects.all():
-    #     for p in c.pages.all():
-    #         add_page(c, p['title'], p['url'], c.views, c.likes)
-
-     # for name, cat in cats.items():
-    #     c = add_cat(name, views=cat['views'], likes=cat['likes'])
-    #     if not c:  # Only add the category if it doesn't already exist
-    #         c = add_cat(name, views=cat['views'], likes=cat['likes'])
-    #     for p in cat['pages']:
-    #         add_page(c, p['title'], p['url'])
-    #     c.save()
-        # for p in cat['pages']:
-        #     add_page(c, p['title'], p['url'])
-        # c.save() 
-
-

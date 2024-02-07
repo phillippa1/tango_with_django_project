@@ -21,8 +21,8 @@ class Category(models.Model):
     def __str__(self):
         return self.name
     
-    def get_absolute_url(self):
-        return reverse('rango:show_category', kwargs={'category_name_slug': self.slug})
+    # def get_absolute_url(self):
+    #     return reverse('rango:show_category', kwargs={'category_name_slug': self.slug})
 class Page(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=128)

@@ -9,40 +9,19 @@
         <body>
             <div>
             {% if category %}
-                <h1>{{ category.name }}</h1>
-                <ul>
-                    {% for category in categories %}
-                        <li>
-                            <a href="{% url 'rango:show_category' category.slug %}">{{ category.name }}</a>
-                        </li>
-                    {% endfor %}
-                    <li>
-                        <a href="{% url 'rango:show_category' test_category.slug %}">Test Category</a>
-                    </li>
-                </ul>
-            {% else %}
-                <strong>There are no pages present.</strong>
-            {% endif %}
-
-
-                {% if pages %}
-                    <ul>
-                        {% for page in pages %}
-                            <li><a href="{% url 'rango:page' page.category.slug page.slug %}">{{ page.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <strong>No pages currently in category.</strong>
-                {% endif %}
-                </div>
-
-            {% else %}
-                <p>The specified category does not exist.</p>
-            {% endif %}
-
-            <div>
-                <a href="/rango/category/{{ category.slug }}/">Back to {{ category.name }}</a>
-            </div>
+        <h1>{{ category.name }}</h1>
+        {% if pages %}
+            <ul>
+                {% for page in pages %}
+                    <li><a href="{% url 'rango:page' category.slug page.slug %}">{{ page.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <strong>No pages currently in category.</strong>
+    {% endif %}
+{% else %}
+    <p>The specified category does not exist.</p>
+{% endif %}
         </body>
 
 </html>

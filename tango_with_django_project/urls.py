@@ -25,7 +25,8 @@ urlpatterns = [
     path('rango/', include('rango.urls', namespace='rango')),
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('rango/about/', views.about, name='about'),
+    # path('rango/about/', views.about, name='about'),
+    # path('category/<slug:category_name_slug>/', views.show_category, name='show_category'),
     #path('about/', views.about, name='about'),
     #path('', include('rango.urls')),
     

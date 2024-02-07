@@ -218,12 +218,18 @@ class Chapter6CategoryViewTests(TestCase):
         Given the response, does the context dictionary match up with what is expected?
         Is the category object being passed correctly, and are the pages being filtered correctly?
         """
+
+        #this checks if there is a frameworks category and creates one if it wasn't there
         other_frameworks_category = Category.objects.get_or_create(name='Other Frameworks')[0]
+        #gets all the pages that belong to the other frameworks category
         page_list = list(Page.objects.filter(category=other_frameworks_category))
         
+        
         self.assertTrue('category' in self.response.context, f"{FAILURE_HEADER}The 'category' variable in the context dictionary for the show_category() view was not found. Did you spell it correctly?{FAILURE_FOOTER}")
+        print("this is what has been printed out",self.response.context, "/n/n/n/n/n//n/n/n")
         self.assertTrue('pages' in self.response.context, f"{FAILURE_HEADER}The 'pages' variable in the context dictionary for the show_category() view was not found.{FAILURE_FOOTER}")
 
+        
         self.assertEqual(self.response.context['category'], other_frameworks_category, f"{FAILURE_HEADER}The category returned in the context dictionary for the show_category() view did not match what was expected. We expect to see a Category object returned here (specifically the 'Other Frameworks' category, for our tests).{FAILURE_FOOTER}")
         self.assertEqual(list(self.response.context['pages']), page_list, f"{FAILURE_HEADER}The list of pages returned in the context dictionary of the show_category() view was not correct. Did you filter the pages correctly in your view?{FAILURE_FOOTER}")
     

@@ -38,7 +38,7 @@ def show_category(request, category_name_slug):
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name_slug)
-        context_dict['category_name'] = category.name
+        #context_dict['category_name'] = category.name
         context_dict['pages'] = Page.objects.filter(category=category)
         context_dict['category'] = category
     except Category.DoesNotExist:

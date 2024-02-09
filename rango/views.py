@@ -50,7 +50,7 @@ def index(request):
 
 
 def about(request):
-    # views = views +1
+    views2 = views2 +1
     context_dict = {'boldmessage': 'about page context dictionary'}
     context_dict['categories'] = Category.objects.all()
     context_dict['index_url'] = reverse('rango:index')

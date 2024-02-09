@@ -17,6 +17,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from datetime import datetime
+# from rango.views import visitor_cookie_handler
 
 
 
@@ -32,6 +33,7 @@ from datetime import datetime
 #     return render(request, 'rango/index.html', context=context_dict)
 
 def index(request):
+    views = views +1
     category_list = Category.objects.order_by('-likes')[:5]
     page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
@@ -48,6 +50,7 @@ def index(request):
 
 
 def about(request):
+    # views = views +1
     context_dict = {'boldmessage': 'about page context dictionary'}
     context_dict['categories'] = Category.objects.all()
     context_dict['index_url'] = reverse('rango:index')
@@ -55,6 +58,8 @@ def about(request):
         print("TEST COOKIE WORKED!")
         request.session.delete_test_cookie()
     return render(request, 'rango/about.html', context=context_dict)
+
+
 
 # def show_category(request, category_name_slug):
 #     context_dict = {}

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-{% load staticfiles %}
-<html>
-    <head>
-        <title>Rango</title>
-    </head>
 
-    <body>
+{% extends 'rango/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+  About Rango
+{% endblock %}  
+
+{% block body_block %}
         <h1>Rango says...</h1>
         <div>
             hey there partner! <br />
@@ -17,10 +19,12 @@
             {% if categories %}
             <ul>
                 {% for category in categories %}
-                <li>
-                    <a href="/rango/category/{{ category.slug }}/">{{ category.name }}</a>
-                </li>
-                {% endfor %}
+                    <li>
+                        <a href="{% url 'rango:show_category' category.slug %}">
+                            {{ category.name }}
+                        </a>
+                    </li>
+            {% endfor %}
             </ul>
             {% else %}
                 <strong>There are no categories present.</strong>
@@ -52,5 +56,4 @@
 
             
 
-    </body>
-</html>
+  {% endblock %}
